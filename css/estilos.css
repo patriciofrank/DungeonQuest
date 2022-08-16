@@ -1,0 +1,37 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.inicio {
+  display: flex;
+  font-family: "Silkscreen", cursive;
+  align-items: center;
+  justify-content: center;
+  background-repeat: round;
+  background-size: contain;
+}
+.inicio a {
+  margin-top: 120%;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: "Cinzel", serif;
+}
+
+p {
+  font-family: "Silkscreen", cursive;
+}
+
+.chart {
+  display: grid;
+  grid-auto-flow: row;
+}
+
+.card img {
+  max-width: 600px;
+  height: auto;
+}/*# sourceMappingURL=estilos.css.map */

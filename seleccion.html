@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/estilos.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>                                
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet"> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+<body>
+    <h1 class="text-center">Bienvenido a la seccion de creacion de Personaje</h1>
+    <div>
+        <h2 class="text-center"class="text-center">Elige la Raza</h2>
+        <div id="opcionesRazas" class="row align-items-start" >
+        </div>
+        <select id="selectorRazas" class="form-select form-select-lg mb-3 text-center" aria-label=".form-select-lg example">
+            <option class="text-center" disabled selected> Elige Tu Clase</option>
+            <option class="text-center" value="Humano">Humano</option>
+            <option class="text-center" value="Elfo">Elfo</option>
+            <option class="text-center" value="Enano">Enano</option>
+            <option class="text-center" value="Gnomo">Gnomo</option>
+          </select>
+            <div class="text-center">
+                <button id="btnRaza" class=" btn btn-primary">Seleccionar</a>
+            </div>
+        <h2 class="text-center">Elige la Clase</h2>
+        <div id="opcionesClases" class="row align-items-start" >
+        </div>
+        <select id="selectorclases" class="form-select form-select-lg mb-3 text-center" aria-label=".form-select-lg example">
+            <option class="text-center" disabled selected> Elige Tu Clase</option>
+            <option class="text-center" value="Guerrero">Guerrero</option>
+            <option class="text-center" value="Mago">Mago</option>
+            <option class="text-center" value="Paladin">Paladin</option>
+            <option class="text-center" value="Picaro">Picaro</option>
+          </select>
+            <div class="text-center">
+                <button id="btnClase" class=" btn btn-primary">Seleccionar</a>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col">
+                      <input id="nombrePersonaje" type="text" class="form-control" placeholder="Elige el nombre de tu personaje" aria-label="First name">
+                    </div>
+                    <div class="text-center">
+                        <button id="btnNombre" class=" btn btn-primary">Seleccionar</a>
+                    </div>       
+                </div>
+            </div>
+        <h2 class="Elegido text-center" >Este es tu Personaje!</h2>
+        <div  id="personajeCreado" >
+        </div>
+    </div>
+    <script src="razas.js" > </script>
+    <script src="clases.js"></script>
+    <script src="personaje.js" > </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+</body>
+</html>
