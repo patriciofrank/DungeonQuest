@@ -63,19 +63,12 @@ for(const clase of clases){
 }
 
 let selectorClase= document.getElementById("selectorclases")
-let btnClase= document.getElementById("btnClase")
 
 selectorClase.onchange=()=> {console.log(selectorClase.value)};
-btnClase.onclick=()=>{location.reload()}
-
 
 let clasePersonaje= selectorClase.value
 
 console.log(clasePersonaje)
-
-
-
-
 
 const classPersonaje = claseElegida (clases , clasePersonaje)
 console.log (classPersonaje)

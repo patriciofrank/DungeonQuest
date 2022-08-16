@@ -61,11 +61,8 @@ for(const cadauna of razas){
     selector.append(select);
 } 
 let selectorRazas= document.getElementById("selectorRazas")
-let btnRaza= document.getElementById("btnRaza")
 
 selectorRazas.onchange=()=> {console.log(selectorRazas.value)};
-
-btnRaza.onclick=()=>{location.reload()}
 
  let personajeRaza= selectorRazas.value
 

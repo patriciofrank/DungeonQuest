@@ -24,8 +24,8 @@ btnNombre.onclick=()=>{location.reload()}
 
  let nombreElegido= nombrePersonaje.value
 
-//let nombreElegido=prompt("elegi el nombre de tu personaje")
-//let nombreElegido="Evanos"
+//variables de estadisticas
+
 let personajeVitalidad=sumaStats(classPersonaje.vitalidad,razaPersonaje.vitalidad)
 let personajeMagia=sumaStats(classPersonaje.magia,razaPersonaje.magia)
 let personajeFuerza=sumaStats(classPersonaje.fuerza,razaPersonaje.fuerza)
@@ -60,22 +60,22 @@ class imagen{
 }
 }
 
-let img1= new imagen("img/personajes-seleccion/E.Asesino.png","Elfo","Picaro");
-let img2= new imagen("img/personajes-seleccion/E.Guerrero.png","Elfo","Guerrero");
-let img3= new imagen("img/personajes-seleccion/E.Mago.png","Elfo","Mago");
-let img4= new imagen("img/personajes-seleccion/E.Paladin.png","Elfo","Paladin");
-let img5= new imagen("img/personajes-seleccion/En.Asesino.png","Enano","Picaro");
-let img6= new imagen("img/personajes-seleccion/En.Guerrero.png","Enano","Guerrero");
-let img7= new imagen("img/personajes-seleccion/En.Paladin.png","Enano","Paladin");
-let img8= new imagen("img/personajes-seleccion/En.Mago.png","Enano","Mago");
-let img9= new imagen("img/personajes-seleccion/G.Asesino.png","Gnomo","Picaro");
-let img10= new imagen("img/personajes-seleccion/G.Guerrero.png","Gnomo","Guerrero");
-let img11= new imagen("img/personajes-seleccion/G.Mago.png","Gnomo","Mago");
-let img12= new imagen("img/personajes-seleccion/G.Paladin.png","Gnomo","Paladin");
-let img13= new imagen("img/personajes-seleccion/H.Paladin.png","Humano","Paladin");
-let img14= new imagen("img/personajes-seleccion/H.Guerrero.png","Humano","Guerrero");
-let img15= new imagen("img/personajes-seleccion/H.Mago.png","Humano","Mago");
-let img16= new imagen("img/personajes-seleccion/H.Asesino.png","Humano","Picaro");
+let img1= new imagen("/img/personajes-seleccion/E.Asesino.png","Elfo","Picaro");
+let img2= new imagen("/img/personajes-seleccion/E.Guerrero.png","Elfo","Guerrero");
+let img3= new imagen("/img/personajes-seleccion/E.Mago.png","Elfo","Mago");
+let img4= new imagen("/img/personajes-seleccion/E.Paladin.png","Elfo","Paladin");
+let img5= new imagen("/img/personajes-seleccion/En.Asesino.png","Enano","Picaro");
+let img6= new imagen("/img/personajes-seleccion/En.Guerrero.png","Enano","Guerrero");
+let img7= new imagen("/img/personajes-seleccion/En.Paladin.png","Enano","Paladin");
+let img8= new imagen("/img/personajes-seleccion/En.Mago.png","Enano","Mago");
+let img9= new imagen("/img/personajes-seleccion/G.Asesino.png","Gnomo","Picaro");
+let img10= new imagen("/img/personajes-seleccion/G.Guerrero.png","Gnomo","Guerrero");
+let img11= new imagen("/img/personajes-seleccion/G.Mago.png","Gnomo","Mago");
+let img12= new imagen("/img/personajes-seleccion/G.Paladin.png","Gnomo","Paladin");
+let img13= new imagen("/img/personajes-seleccion/H.Paladin.png","Humano","Paladin");
+let img14= new imagen("/img/personajes-seleccion/H.Guerrero.png","Humano","Guerrero");
+let img15= new imagen("/img/personajes-seleccion/H.Mago.png","Humano","Mago");
+let img16= new imagen("/img/personajes-seleccion/H.Asesino.png","Humano","Picaro");
 
 const imagenes=[]
 
