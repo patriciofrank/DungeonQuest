@@ -33,8 +33,6 @@ let personajeAgilidad=sumaStats(classPersonaje.agilidad,razaPersonaje.agilidad)
 
 const personajeStats=[]
 
-
-
 let personajecreado= new miPersonaje(nombreElegido,personajeVitalidad,personajeMagia,personajeFuerza,personajeAgilidad);
 personajeStats.push(personajecreado);
 

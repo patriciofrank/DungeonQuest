@@ -22,10 +22,6 @@ class OFICIOS{
  console.table(clases)
 
 
-
-
-
-
 //FUNCION PARA SELECCIONAR LAS VARIABLES DE LA CLASE ELEGIDA
 function claseElegida(disponibles1,elegida2){
    for (const ofi of disponibles1) {
@@ -35,10 +31,6 @@ function claseElegida(disponibles1,elegida2){
    }
 }
 
-
-
-//alert("La clase y stats de la raza elegida :"+JSON.stringify(clasePersonaje));
-//console.log(clasePersonaje)
 
 //Ver clases disponibles
 let seleccion=document.getElementById("opcionesClases");

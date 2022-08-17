@@ -23,8 +23,6 @@ class RAZA{
  
  
  //Definir Raza elegida
- 
- //let personajeRaza=prompt("Elige que raza Humano,Elfo,Enano,Gnomo");
 
  function razaElegida(disponibles,elegida){
     for (const raz of disponibles) {
@@ -33,9 +31,6 @@ class RAZA{
        }
     }
  }
- 
-
- //alert("La raza y stats de la raza elegida :"+JSON.stringify(razaPersonaje));
  
 //Parte visual
 //Ver razas disponibles
@@ -52,9 +47,6 @@ for(const cadauna of razas){
                <p class="card-text">Fuerza ${cadauna.fuerza}</p>
                <p class="card-text">Magia ${cadauna.magia}</p>
                <p class="card-text">Agilidad ${cadauna.agilidad}</p>
-               <div class="text-center">
-               <button class="btnRaza btn btn-primary">Elegir</a>
-               </div>
          </div>
       </div>
     `;
