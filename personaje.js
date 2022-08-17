@@ -138,7 +138,7 @@ eleccion.innerHTML=`
                <p class="card-text">Agilidad: ${personaje.agilidad}</p>
                   
                <div class="text-center">
-                <button class="btn btn-primary">Elegir</a>
+                <a href="piso1.html" class="btn btn-primary">Empezar Aventura</a>
                </div>
             </div>   
          </div>
