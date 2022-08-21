@@ -33,6 +33,7 @@ function claseElegida(disponibles1,elegida2){
 
 
 //Ver clases disponibles
+
 let seleccion=document.getElementById("opcionesClases");
 for(const clase of clases){
     let slect=document.createElement("div");
@@ -55,12 +56,10 @@ for(const clase of clases){
 }
 
 let selectorClase= document.getElementById("selectorclases")
+let eleccionClase;
+if (selectorClase.value !== " "){
+    eleccionClase = selectorClase.value,0
+};
 
-selectorClase.onchange=()=> {console.log(selectorClase.value)};
 
-let clasePersonaje= selectorClase.value
-
-console.log(clasePersonaje)
-
-const classPersonaje = claseElegida (clases , clasePersonaje)
-console.log (classPersonaje)
+console.log(eleccionClase);

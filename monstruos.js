@@ -50,10 +50,10 @@ console.table(piso3)
 
 let monstruosPiso1=document.getElementById("monstruos");
 for(const mons of piso2){
-    let select=document.createElement("div");
-    select.className="card col-sm-6 col-md-6 col-lg-3";
-    select.innerHTML=`
-      <div class="card" style="width: 18rem;">
+    let mons1=document.createElement("div");
+ 
+    mons1.innerHTML=`
+      <div class="card col-sm-6 col-md-6 col-lg-3" style="width: 18rem;">
          <img src="${mons.imagen}" class="card-img-top text-center" alt="Imagen${mons}">
          <div class="card-body text-center">
                <h5 class="card-title">Criatura: ${mons.nombre}</h5>
@@ -63,5 +63,5 @@ for(const mons of piso2){
          </div>
       </div>
     `;
-    selector.append(monstruosPiso1);
+    monstruosPiso1.append(mons1);
 } 

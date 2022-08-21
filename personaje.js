@@ -6,8 +6,8 @@ const sumaStats=(a,b)=>{return (a+b)};
 class miPersonaje{
    constructor(nombre,vitalidad,magia,fuerza,agilidad){
       this.nombre=nombre
-      this.raza=razaPersonaje.nombre
-      this.clase=classPersonaje.nombre
+      this.raza=raza
+      this.clase=clase
       this.vitalidad=vitalidad
       this.magia=magia
       this.fuerza=fuerza
@@ -20,7 +20,7 @@ let btnNombre= document.getElementById("btnNombre")
 
 nombrePersonaje.onchange=()=> {console.log(nombrePersonaje.value)};
 
-btnNombre.onclick=()=>{location.reload()}
+btnNombre.onclick=()=>{console.log(nombrePersonaje.value)}
 
  let nombreElegido= nombrePersonaje.value
 
@@ -48,7 +48,7 @@ let vidaPerdonaje = personajeVitalidad * 20
 let golpePersonaje = personajeFuerza * 15
 let magiaPersonaje = personajeMagia *15
 
-
+console.table(miPersonaje)
 //Imagenes personajes
 class imagen{
    constructor(imagen,raza,clase){
@@ -98,7 +98,7 @@ console.table(imagenes)
 console.log(personajeRaza)
 console.log(clasePersonaje)
 
-const busqueda1= imagenes.filter((a)=>a.raza==(personajeRaza));
+//const busqueda1= imagenes.filter((a)=>a.raza==(personajeRaza));
 console.log(busqueda1)
 
 const busqueda2 = busqueda1.filter ((b)=> b.clase == (clasePersonaje));
@@ -138,7 +138,7 @@ eleccion.innerHTML=`
                <p class="card-text">Agilidad: ${personaje.agilidad}</p>
                   
                <div class="text-center">
-                <a href="piso1.html" class="btn btn-primary">Empezar Aventura</a>
+                <a href="nivel1.html" class="btn btn-primary">Empezar Aventura</a>
                </div>
             </div>   
          </div>
