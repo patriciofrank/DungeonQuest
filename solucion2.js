@@ -1,11 +1,10 @@
    let nombreElegido;
    let miPersonaje=[]
+//    si Hay personaje guardado el el storage Local
    if(localStorage.getItem("miPersonaje")!=null){
-      
-    recuperarPersonaje();
-
+    miPersonaje=JSON.parse(localStorage.getItem("miPersonaje"))
    }
-   //Parte visual
+
   
    //Ver razas disponibles
 
@@ -16,16 +15,17 @@
       selector.append(tituloRaza)
     for(const cadauna of razas){
         let select=document.createElement("div");
-        select.className="col-sm-6 col-md-6 col-lg-3";
+        select.className="card col-sm-6 col-md-6 col-lg-3";
+        select.style="margin-bottom: 1rem"
         select.innerHTML=`
-        <div class="card" style="width: 100%;">
+        <div class="card"  style="width: 100%;">
             <img src="${cadauna.imagen}" class="card-img-top text-center" alt="Imagen${cadauna}">
                 <div class="card-body text-center">
                 <h5 class="card-title">Raza: ${cadauna.nombre}</h5>
                 <p class="card-text"><b>Descripcion :</b></br> ${cadauna.desc}</p>
                 </div>
             <div class="text-center">
-                <button id="btn${cadauna.nombre}" class=" btn btn-primary" value="${cadauna.nombre}" >Elegir Raza</a>
+                <button id="btn${cadauna.nombre}" style="width: 100%;"  class=" btn btn-primary" value="${cadauna.nombre}" >Elegir Raza</a>
             </div>
         </div>
         `;
@@ -73,6 +73,7 @@ selec2.append(tituloClase);
         botonP.id=`btn${cada.raza}${cada.clase}`
         let slectt=document.createElement("div");
         slectt.className="card col-sm-6 card col-md-6 col-lg-3";
+        slectt.style="margin-bottom: 1rem"
         slectt.innerHTML=`
     <div class="card" style="width: 100%;"> 
             <div>
@@ -189,8 +190,8 @@ function miEleccion(chart){
 function elegirNombre(){
         let charterName=document.getElementById("input")
         nombreElegido=charterName.value;
-        miPersonaje[0].nombre=nombreElegido
-        console.log(nombreElegido)
+        let posicion=miPersonaje.length-1
+        miPersonaje[posicion].nombre=nombreElegido
          if(nombreElegido!=""){
             let nombrePersonaje=document.getElementById("nombre")
             let nombreAsignado=document.createElement("h2")
@@ -215,12 +216,44 @@ function crearPersonaje(){
 }
 
 function recuperarPersonaje(){
+    let crear= document.getElementById("crearPersonaje");
     let recPers =document.createElement("button");
     recPers.className="btn-primary";
     recPers.innerText="Recuperar Personaje"
+    crear.append(recPers)
     recPers.onclick=()=>{
-
-        miEleccion(miPersonaje)
-    }
+            recup();
+        }
 
 }
+
+function recup(){
+    let miCharter=document.getElementById("personaje");    
+    let charter=document.createElement("div");
+
+    charter.className="card col-sm-12 card col-md-12 col-lg-12";
+    charter.innerHTML=`
+    <div class="card mb-3" style="max-width: 100%;">
+    <div class="row g-0">
+      <div class="col-md-8">
+        <img src="${miPersonaje.imagen}" class="img-fluid rounded-start" alt="${miPersonaje.raza}-${miPersonaje.clase}">
+      </div>
+      <div class="col-md-4">
+  
+        <div id="miPersonaje" class="card-body text-center">
+            <h2 class="card-title">Raza:${miPersonaje.raza}</h2>
+            <h5 class="card-title">Raza:${miPersonaje.raza} Clase: ${miPersonaje.clase} </h5>
+            <p class="card-text">Vitada: ${miPersonaje.vida}</p>
+            <p class="card-text">Daño Fisico ${miPersonaje.golpeF}</p>
+            <p class="card-text">Daño Magico ${miPersonaje.golpeM}</p>
+            <p class="card-text">Vitalidad: ${miPersonaje.vitalidad}</p>
+            <p class="card-text">Fuerza ${miPersonaje.fuerza}</p>
+            <p class="card-text">Magia ${miPersonaje.magia}</p>
+            <p class="card-text">Agilidad ${miPersonaje.agilidad}</p>
+        </div>
+       
+   </div>
+    `;
+    ;
+    miCharter.append(charter);
+    }
