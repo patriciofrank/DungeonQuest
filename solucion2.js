@@ -227,7 +227,7 @@ function crearPersonaje(){
     botonCrear.onclick=()=>{
         localStorage.setItem("miPersonaje",JSON.stringify(miPersonaje))
         console.log(miPersonaje);
-        batallaPiso1(miPersonaje[ultimoCh],piso1[1]);
+        batallaPiso1(miPersonaje[ultimoCh++],piso1[1]);
         noDisplay4();
         noDisplay6();
     }
