@@ -2,7 +2,9 @@
    let miPersonaje=[]
 //    si Hay personaje guardado el el storage Local
    if(localStorage.getItem("miPersonaje")!=null){
-    miPersonaje=JSON.parse(localStorage.getItem("miPersonaje"))
+   miPersonaje=JSON.parse(localStorage.getItem("miPersonaje"))
+   const ultimoCh=miPersonaje.length-1
+   recuperarPersonaje(miPersonaje[ultimoCh]);
    }
 
   
@@ -19,7 +21,7 @@
         select.style="margin-bottom: 1rem"
         select.innerHTML=`
         <div class="card"  style="width: 100%;">
-            <img src="${cadauna.imagen}" class="card-img-top text-center" alt="Imagen${cadauna}">
+            <img src="${cadauna.imagen}" class="card-img-top text-center" alt="Imagen${cadauna.nombre}">
                 <div class="card-body text-center">
                 <h5 class="card-title">Raza: ${cadauna.nombre}</h5>
                 <p class="card-text"><b>Descripcion :</b></br> ${cadauna.desc}</p>
@@ -54,6 +56,7 @@
     verRazas();
     volver();
     noDisplay();
+    noDisplay4();
     
 };
 
@@ -108,7 +111,7 @@ selec2.append(tituloClase);
     
     
 }
-console.log("tu personaje :"+miPersonaje)
+
 
 //Funciones de borrado
 
@@ -128,7 +131,18 @@ function noDisplay(){
     let borrado4=document.querySelector("#Bnombre") 
     borrado4.style= `display:none`;
 }
-
+function noDisplay4(){
+    let borrado5=document.querySelector("#crearPersonaje button") 
+    borrado5.style= `display:none`;
+}
+function noDisplay5(){
+    let borrado6=document.querySelector("#personaje ") 
+    borrado6.style= `display:none`;
+}
+function noDisplay6(){
+    let borrado7=document.querySelector("#volver button")
+    borrado7.style= `display:none`;
+}
 //Boton volver
 function volver(){
     let volv = document.getElementById("volver");
@@ -186,7 +200,7 @@ function miEleccion(chart){
         noDisplay3();
     })
 }
-
+//Elegir nombre
 function elegirNombre(){
         let charterName=document.getElementById("input")
         nombreElegido=charterName.value;
@@ -202,6 +216,7 @@ function elegirNombre(){
     console.log(miPersonaje)
     
 }
+//Boton de creacion de personaje con grabado en local storage
 function crearPersonaje(){
     let crear= document.getElementById("crearPersonaje");
     let botonCrear = document.createElement("button");
@@ -212,22 +227,29 @@ function crearPersonaje(){
     botonCrear.onclick=()=>{
         localStorage.setItem("miPersonaje",JSON.stringify(miPersonaje))
         console.log(miPersonaje);
+        batallaPiso1(miPersonaje[length(-1)],piso1[1]);
+        noDisplay4();
+        noDisplay6();
     }
 }
 
-function recuperarPersonaje(){
+function recuperarPersonaje(a){
     let crear= document.getElementById("crearPersonaje");
     let recPers =document.createElement("button");
-    recPers.className="btn-primary";
+    recPers.className="btn btn-primary";
     recPers.innerText="Recuperar Personaje"
     crear.append(recPers)
     recPers.onclick=()=>{
-            recup();
+            recup(a);
+            comenzar();
+            volver();
+            noDisplay();
+            noDisplay4();
         }
 
 }
 
-function recup(){
+function recup(a){
     let miCharter=document.getElementById("personaje");    
     let charter=document.createElement("div");
 
@@ -236,24 +258,163 @@ function recup(){
     <div class="card mb-3" style="max-width: 100%;">
     <div class="row g-0">
       <div class="col-md-8">
-        <img src="${miPersonaje.imagen}" class="img-fluid rounded-start" alt="${miPersonaje.raza}-${miPersonaje.clase}">
+        <img src="${a.imagen}" class="img-fluid rounded-start" alt="${a.raza}-${a.clase}">
       </div>
       <div class="col-md-4">
   
         <div id="miPersonaje" class="card-body text-center">
-            <h2 class="card-title">Raza:${miPersonaje.raza}</h2>
-            <h5 class="card-title">Raza:${miPersonaje.raza} Clase: ${miPersonaje.clase} </h5>
-            <p class="card-text">Vitada: ${miPersonaje.vida}</p>
-            <p class="card-text">Daño Fisico ${miPersonaje.golpeF}</p>
-            <p class="card-text">Daño Magico ${miPersonaje.golpeM}</p>
-            <p class="card-text">Vitalidad: ${miPersonaje.vitalidad}</p>
-            <p class="card-text">Fuerza ${miPersonaje.fuerza}</p>
-            <p class="card-text">Magia ${miPersonaje.magia}</p>
-            <p class="card-text">Agilidad ${miPersonaje.agilidad}</p>
+            <h2 class="card-title">Nombre: ${a.nombre}</h2>
+            <h5 class="card-title">Raza: ${a.raza} Clase: ${a.clase} </h5>
+            <p class="card-text">Vitada: ${a.vida}</p>
+            <p class="card-text">Daño Fisico ${a.golpeF}</p>
+            <p class="card-text">Daño Magico ${a.golpeM}</p>
+            <p class="card-text">Vitalidad: ${a.vitalidad}</p>
+            <p class="card-text">Fuerza ${a.fuerza}</p>
+            <p class="card-text">Magia ${a.magia}</p>
+            <p class="card-text">Agilidad ${a.agilidad}</p>
         </div>
        
    </div>
     `;
     ;
     miCharter.append(charter);
+
     }
+function alertaBatalla(){
+    Swal.fire({
+        title: 'Preparate!',
+        text: 'Afila tu espada y comienza la batalla',
+        imageUrl:("/img/personajes-seleccion/CrossSword.png"),
+        imageWidth: 400,
+        imageHeight: 200,
+        imageAlt: 'img batalla',
+      })
+    }
+    function comenzar(){
+        let btnEmpezar=document.getElementById("volver")
+        let botonEmpezar = document.createElement("button");
+        botonEmpezar.className="btn btn-primary ";
+        botonEmpezar.innerText ="Comenzar!"
+        btnEmpezar.append(botonEmpezar);
+        botonEmpezar.onclick=()=>{
+                alertaBatalla();
+                batallaPiso1(miPersonaje[ultimoCh],piso1[1]);
+                noDisplay5();
+                noDisplay6();
+        };
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+   //Funciones de Pelea
+function batallaPiso1(a,b){
+    let batalla1=document.getElementById("batalla1");    
+    let bt1=document.createElement("div");
+
+    bt1.className="card-group";
+    bt1.innerHTML=`
+        <div class="card">
+            <img src="${a.imagen}" class="img-fluid rounded-start" alt="${a.raza}-${a.clase}" style="max-width: 100%;">
+            <div class="card-body">
+                    <h2 class="card-title">Nombre: ${a.nombre}</h2>
+                    <h5 class="card-title">Raza: ${a.raza} Clase: ${a.clase} </h5>
+                    <p class="card-text">Vitada: ${a.vida}</p>
+                    <p class="card-text">Daño Fisico ${a.golpeF}</p>
+                    <p class="card-text">Daño Magico ${a.golpeM}</p>
+                    <p class="card-text">Vitalidad: ${a.vitalidad}</p>
+                    <p class="card-text">Fuerza ${a.fuerza}</p>
+                    <p class="card-text">Magia ${a.magia}</p>
+                    <p class="card-text">Agilidad ${a.agilidad}</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+            <button class="d-grid gap-4 col-4 mx-auto btn btn-primary">Atacar</button>
+            <button class="d-grid gap-4 col-4 mx-auto btn btn-primary">Magia</button>
+            <button class="d-grid gap-4 col-4 mx-auto btn btn-primary">Bloquear</button>
+            </div>
+        </div>
+        <div class="card">
+            <img src="${b.imagen}" class="img-fluid rounded-start" alt="${b.nombre}">
+        <div class="card-body">
+                <h2 class="card-title">Nombre: ${b.nombre}</h2>   
+                <p class="card-text">Vida: ${b.vida}</p>
+                <p class="card-text">Fuerza: ${b.golpe}</p>
+                <p class="card-text">Agilidad: ${b.agilidad}</p>
+        </div>
+    `;
+    batalla1.append(bt1);
+
+}
+
+
+function batalla(per,enem){
+let monstruo1=enem
+let personajeElegido=per
+
+const  vidaBatallaP = personajeElegido.vida
+const  golpeBatallaP = personajeElegido.golpeF
+const  magiaBatallaP = personajeElegido.golpeM
+const  vidaBatallaM1 = monstruo1.vida
+const  golpeBatallaM1 = monstruo1.golpe
+
+const ambosVivos = () => vidaBatallaP != 0 && vidaBatallaM1 != 0
+const calcularGolpeP = () => Math.round(Math.random() *100 + golpeBatallaP )
+const calcularMagiaP = () => Math.round(Math.random() *100 + magiaBatallaP )
+const calcularGolpeM1 = () => Math.round(Math.random() *100 + golpeBatallaM1 )
+ 
+let pasarNivel=document.getElementById("siguienteNivel");
+let botonAccion = document.getElementForClass("btnAccion")
+
+let figth = 0
+
+const victoria = () =>  monstruo1.vida  >= 0
+
+while (ambosVivos()){
+    figth ++
+    const golpePe = calcularGolpeP()
+    const golpeMo = calcularGolpeM1()
+    const magiaPe = calcularMagiaP()
+    
+   botonAccion.onclick=()=>{
+    
+    if (on.click.value="Atacar"){
+       console.log ("Atacas al enemigo con un golpe de ${golpeP}.")
+       vidaBatallaM1 -= golpePe;
+       monstruo1.vida.push=vidaBatallaM1;
+       console.log ("El enemigo te ataca y pierdes ${golpeP} de vida.")
+       vidaBatallaP -= golpePe;
+       miPersonaje.vida.push=vidaBatallaM1;
+    }else if (on.click.value="Magia") {
+       console.log ("Atacas al enemigo con un ataque magico de ${magiaP}.")
+       vidaBatallaM1 -= magiaPe; 
+       console.log ("El enemigo te ataca y pierdes ${golpeP} de vida.")
+       vidaBatallaP -= golpeMo;
+    }else{
+		
+	console.log("Ataque enemigo bloqueado !")
+
+	}
+    }
+}
+
+if (victoria()){
+    console.log("VICTORIA!!!! HAZ DERROTADO AL OPONENTE!")
+    let pasarLvl=document.createElement("div");
+    pasarLvl.className="text-center";
+    pasarLvl.innerHTML=`
+	<button id="btn1-2" class="btn btn-primary">Empezar Aventura</button>
+        `
+    pasarLvl.append(pasarNivel);	
+} else {
+    console.log ("PERDISTE , VE A PULIR TUS HABILIDADES Y VUELVE A INTENTARLO")
+    let volver=document.createElement("div");
+    volver.className="text-center";
+    volver.innerHTML=`
+	<a href="seleccion.html" class="btn btn-primary">Empezar Aventura</a>
+        `
+    volver.append(pasarNivel);	
+}  
+}
+
+const ultimoCh=miPersonaje.length-1;
+console.log(ultimoCh)
