@@ -120,28 +120,36 @@ function noDisplay(){
      borrado.style= `display:none`;
   }
  function noDisplay1(){
-     let borrado2=document.querySelector("#opcionesRazas") 
-     borrado2.style= `display:none`;
+     let borrado=document.querySelector("#opcionesRazas") 
+     borrado.style= `display:none`;
  }
  function noDisplay2(){
-     let borrado3=document.querySelector("#clase") 
-     borrado3.style= `display:none`;
+     let borrado=document.querySelector("#clase") 
+     borrado.style= `display:none`;
  }
  function noDisplay3(){
-    let borrado4=document.querySelector("#Bnombre") 
-    borrado4.style= `display:none`;
+    let borrado=document.querySelector("#Bnombre") 
+    borrado.style= `display:none`;
 }
 function noDisplay4(){
-    let borrado5=document.querySelector("#crearPersonaje button") 
-    borrado5.style= `display:none`;
+    let borrado=document.querySelector("#crearPersonaje .btn") 
+    borrado.style= `display:none`;
 }
 function noDisplay5(){
-    let borrado6=document.querySelector("#personaje ") 
-    borrado6.style= `display:none`;
+    let borrado=document.querySelector("#personaje ") 
+    borrado.style= `display:none`;
 }
 function noDisplay6(){
-    let borrado7=document.querySelector("#volver button")
-    borrado7.style= `display:none`;
+    let borrado=document.querySelector("#volver .btn")
+    borrado.style= `display:none`;
+}
+function noDisplay7(){
+    let borrado=document.querySelector("#nombre")
+    borrado.style= `display:none`;
+}
+function noDisplay8(){
+    let borrado=document.querySelector("#crearBtn")
+    borrado.style= `display:none`;
 }
 //Boton volver
 function volver(){
@@ -220,17 +228,22 @@ function elegirNombre(){
 function crearPersonaje(){
     let crear= document.getElementById("crearPersonaje");
     let botonCrear = document.createElement("button");
+    botonCrear.id=`crearBtn`;
     botonCrear.className="btn btn-primary ";
-    botonCrear.innerText ="Crear"
+    botonCrear.innerText ="Crear";
     crear.append(botonCrear);
 
     botonCrear.onclick=()=>{
         localStorage.setItem("miPersonaje",JSON.stringify(miPersonaje))
         console.log(miPersonaje);
-        
+        noDisplay3();
+        noDisplay5();
+        noDisplay7();
+        noDisplay8();
+        alertaBatalla()
         batallaPiso1(miPersonaje[ultimoCh+1],piso1[1]);
-        noDisplay4();
-        noDisplay6();
+       
+       
     }
 }
 
@@ -287,7 +300,7 @@ function alertaBatalla(){
         text: 'Afila tu espada y comienza la batalla',
         imageUrl:("/img/personajes-seleccion/CrossSword.png"),
         imageWidth: 400,
-        imageHeight: 200,
+        imageHeight: 400,
         imageAlt: 'img batalla',
       })
     }
@@ -307,10 +320,27 @@ function alertaBatalla(){
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
    //Funciones de Pelea
-function batallaPiso1(a,b){
-    let batalla1=document.getElementById("batalla1");    
-    let bt1=document.createElement("div");
 
+const ultimoCh=miPersonaje.length-1;
+console.log(ultimoCh)
+
+function botonesDeAccion(){
+    let batallaBtn=document.getElementById("btnB");
+    let botoneraB=document.createElement("div");
+    botoneraB.style="display:flex";
+    botoneraB.innerHTML =`
+    <button value="atacar" id="btnAtac" class="btnAccion d-grid gap-4 col-4 mx-auto btn btn-primary">Atacar</button>
+    <button value="magia" id="btnMag" class="btnAccion d-grid gap-4 col-4 mx-auto btn btn-primary">Magia</button>
+    <button value="bloquear" id="btnBloc" class="btnAccion d-grid gap-4 col-4 mx-auto btn btn-primary">Bloquear</button>
+    `;
+
+  batallaBtn.append(botoneraB)
+};
+
+function batallaPiso1(a,b){
+    let batalla1=document.getElementById("batalla1");   
+    let bt1=document.createElement("div");
+    bt1.id="inFigth"
     bt1.className="card-group";
     bt1.innerHTML=`
         <div class="card">
@@ -329,9 +359,7 @@ function batallaPiso1(a,b){
         </div>
         <div class="card">
             <div class="card-body">
-            <button class="d-grid gap-4 col-4 mx-auto btn btn-primary">Atacar</button>
-            <button class="d-grid gap-4 col-4 mx-auto btn btn-primary">Magia</button>
-            <button class="d-grid gap-4 col-4 mx-auto btn btn-primary">Bloquear</button>
+           
             </div>
         </div>
         <div class="card">
@@ -344,78 +372,144 @@ function batallaPiso1(a,b){
         </div>
     `;
     batalla1.append(bt1);
+    botonesDeAccion();
+    batalla(a,b);
+    
+}
+
+function inFigth(a,b){
+    let batalla1=document.getElementById("inFigth");   
+    batalla1.innerHTML=`
+        <div class="card">
+            <img src="${a.imagen}" class="img-fluid rounded-start" alt="${a.raza}-${a.clase}" style="max-width: 100%;">
+            <div class="card-body">
+                    <h2 class="card-title">Nombre: ${a.nombre}</h2>
+                    <h5 class="card-title">Raza: ${a.raza} Clase: ${a.clase} </h5>
+                    <p class="card-text">Vitada: ${a.vida}</p>
+                    <p class="card-text">Daño Fisico ${a.golpeF}</p>
+                    <p class="card-text">Daño Magico ${a.golpeM}</p>
+                    <p class="card-text">Vitalidad: ${a.vitalidad}</p>
+                    <p class="card-text">Fuerza ${a.fuerza}</p>
+                    <p class="card-text">Magia ${a.magia}</p>
+                    <p class="card-text">Agilidad ${a.agilidad}</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+           
+            </div>
+        </div>
+        <div class="card">
+            <img src="${b.imagen}" class="img-fluid rounded-start" alt="${b.nombre}">
+        <div class="card-body">
+                <h2 class="card-title">Nombre: ${b.nombre}</h2>   
+                <p class="card-text">Vida: ${b.vida}</p>
+                <p class="card-text">Fuerza: ${b.golpe}</p>
+                <p class="card-text">Agilidad: ${b.agilidad}</p>
+        </div>
+    `;
+     
+   victoriaDerrota(a,b);
 
 }
+
+
 
 
 function batalla(per,enem){
-let monstruo1=enem
-let personajeElegido=per
 
-const  vidaBatallaP = personajeElegido.vida
-const  golpeBatallaP = personajeElegido.golpeF
-const  magiaBatallaP = personajeElegido.golpeM
-const  vidaBatallaM1 = monstruo1.vida
-const  golpeBatallaM1 = monstruo1.golpe
+const  golpeBatallaP = per.golpeF
+const  magiaBatallaP = per.golpeM
+const  golpeBatallaM1 = enem.golpe
 
-const ambosVivos = () => vidaBatallaP != 0 && vidaBatallaM1 != 0
-const calcularGolpeP = () => Math.round(Math.random() *100 + golpeBatallaP )
-const calcularMagiaP = () => Math.round(Math.random() *100 + magiaBatallaP )
-const calcularGolpeM1 = () => Math.round(Math.random() *100 + golpeBatallaM1 )
+const calcularGolpeP = () => Math.round(Math.random() *100 + golpeBatallaP );
+const calcularMagiaP = () => Math.round(Math.random() *100 + magiaBatallaP );
+const calcularGolpeM1 = () => Math.round(Math.random() *100 + golpeBatallaM1 );
+const botonAtac = document.getElementById("btnAtac")
+const botonMag = document.getElementById("btnMag")
+const botonBlock = document.getElementById("btnBloc")
+
+// let figth = 0
+
+
+    while((per.vida >= 0 && enem.vida >= 0)){
+            const golpePe = calcularGolpeP()
+            const golpeMo = calcularGolpeM1()
+            const magiaPe = calcularMagiaP()
+           
+            botonAtac.onclick=()=>{
+        
+            console.log (`Atacas al enemigo con un golpe de ${golpePe}. `)
+            let resul=  enem.vida -= golpePe;
+                enem.vida.push=resul;
+                console.log (`El enemigo te ataca y pierdes ${golpeMo} de vida.`)
+            let resul2=   per.vida -= golpePe;
+            
+                per.vida.push=resul2;
+            
+                inFigth(per,enem)
+            }
+        
+        botonMag.onclick=()=>{
+        
+            console.log (`Atacas al enemigo con un golpe magico de ${golpePe}. `)
+            let resul=  enem.vida -= magiaPe;
+                enem.vida.push=resul;
+                console.log (`El enemigo te ataca y pierdes ${golpeMo} de vida.`)
+            let resul2=   per.vida -= golpePe;
+            
+                per.vida.push=resul2;
+             
+                inFigth(per,enem)
+            }
+
+            botonBlock.onclick=()=>{
+                console.log("Ataque enemigo bloqueado !")
+                inFigth(per,enem)
+            } 
+
+            break;
+           
+ }
  
-let pasarNivel=document.getElementById("siguienteNivel");
-let botonAccion = document.getElementForClass("btnAccion")
+} 
 
-let figth = 0
-
-const victoria = () =>  monstruo1.vida  >= 0
-
-while (ambosVivos()){
-    figth ++
-    const golpePe = calcularGolpeP()
-    const golpeMo = calcularGolpeM1()
-    const magiaPe = calcularMagiaP()
-    
-   botonAccion.onclick=()=>{
-    
-    if (on.click.value="Atacar"){
-       console.log ("Atacas al enemigo con un golpe de ${golpeP}.")
-       vidaBatallaM1 -= golpePe;
-       monstruo1.vida.push=vidaBatallaM1;
-       console.log ("El enemigo te ataca y pierdes ${golpeP} de vida.")
-       vidaBatallaP -= golpePe;
-       miPersonaje.vida.push=vidaBatallaM1;
-    }else if (on.click.value="Magia") {
-       console.log ("Atacas al enemigo con un ataque magico de ${magiaP}.")
-       vidaBatallaM1 -= magiaPe; 
-       console.log ("El enemigo te ataca y pierdes ${golpeP} de vida.")
-       vidaBatallaP -= golpeMo;
-    }else{
-		
-	console.log("Ataque enemigo bloqueado !")
-
-	}
+function victoriaDerrota(a,b){
+    if ( (a.vida  >= 0) && (b.vida <=0)){
+       alertaVictoria();
+        // let pasarLvl=document.createElement("div");
+        // pasarLvl.className="text-center";
+        // pasarLvl.innerHTML=`
+        // <button id="btn1-2" class="btn btn-primary">Empezar Aventura</button>
+        //     `
+        // pasarLvl.append(pasarNivel);	
+    } else if((b.vida >=0 )&& (a.vida  <= 0)){
+      alertaDerrota();
+        // let volver=document.createElement("div");
+        // volver.className="text-center";
+        // volver.innerHTML=`
+        // <a href="seleccion.html" class="btn btn-primary">Empezar Aventura</a>
+        //     `
+        // volver.append(pasarNivel);	
     }
 }
-
-if (victoria()){
-    console.log("VICTORIA!!!! HAZ DERROTADO AL OPONENTE!")
-    let pasarLvl=document.createElement("div");
-    pasarLvl.className="text-center";
-    pasarLvl.innerHTML=`
-	<button id="btn1-2" class="btn btn-primary">Empezar Aventura</button>
-        `
-    pasarLvl.append(pasarNivel);	
-} else {
-    console.log ("PERDISTE , VE A PULIR TUS HABILIDADES Y VUELVE A INTENTARLO")
-    let volver=document.createElement("div");
-    volver.className="text-center";
-    volver.innerHTML=`
-	<a href="seleccion.html" class="btn btn-primary">Empezar Aventura</a>
-        `
-    volver.append(pasarNivel);	
-}  
-}
-
-const ultimoCh=miPersonaje.length-1;
-console.log(ultimoCh)
+function alertaVictoria(){
+    Swal.fire({
+        title: 'Victoria!!!',
+        text: 'continua con el proximo desafio',
+        imageUrl:("/img/personajes-seleccion/victoria.jpg"),
+        imageWidth: 400,
+        imageHeight: 400,
+        imageAlt: 'img batalla',
+      })
+    }
+    function alertaDerrota(){
+        Swal.fire({
+            title: 'Derrota!!!',
+            text: 'Entrena un poco mas y vuelve a intentarlo',
+            imageUrl:("/img/personajes-seleccion/muerto.png"),
+            imageWidth: 400,
+            imageHeight: 400,
+            imageAlt: 'img batalla',
+          })
+        }

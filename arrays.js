@@ -31,7 +31,7 @@ class RAZA{
         this.fuerza=fuerza
         this.magia=magia
         this.agilidad=agilidad
-        this.vida=this.vitalidad*20
+        this.vida=this.vitalidad*200
         this.golpeF=this.fuerza*15
         this.golpeM=this.magia*15
     }
