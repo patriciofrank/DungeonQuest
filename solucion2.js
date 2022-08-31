@@ -1,5 +1,6 @@
    let nombreElegido;
    let miPersonaje=[]
+   let miCharter;
 //    si Hay personaje guardado el el storage Local
    if(localStorage.getItem("miPersonaje")!=null){
    miPersonaje=JSON.parse(localStorage.getItem("miPersonaje"))
@@ -241,7 +242,8 @@ function crearPersonaje(){
         noDisplay7();
         noDisplay8();
         alertaBatalla()
-        batallaPiso1(miPersonaje[ultimoCh+1],piso1[1]);
+        batallaPiso1(miPersonaje[ultimoCh+1],piso1[0]);
+        miCharter=miPersonaje[ultimoCh+1]
        
        
     }
@@ -253,6 +255,7 @@ function recuperarPersonaje(a){
     recPers.className="btn btn-primary";
     recPers.innerText="Recuperar Personaje"
     crear.append(recPers)
+    miCharter=a;
     recPers.onclick=()=>{
             recup(a);
             comenzar();
@@ -312,7 +315,7 @@ function alertaBatalla(){
         btnEmpezar.append(botonEmpezar);
         botonEmpezar.onclick=()=>{
                 alertaBatalla();
-                batallaPiso1(miPersonaje[ultimoCh],piso1[1]);
+                batallaPiso1(miPersonaje[ultimoCh],piso1[0]);
                 noDisplay5();
                 noDisplay6();
         };
@@ -422,7 +425,7 @@ const  golpeBatallaP = per.golpeF
 const  magiaBatallaP = per.golpeM
 const  golpeBatallaM1 = enem.golpe
 
-const calcularGolpeP = () => Math.round(Math.random() *100 + golpeBatallaP );
+let calcularGolpeP = () => Math.round(Math.random() *100 + golpeBatallaP );
 const calcularMagiaP = () => Math.round(Math.random() *100 + magiaBatallaP );
 const calcularGolpeM1 = () => Math.round(Math.random() *100 + golpeBatallaM1 );
 const botonAtac = document.getElementById("btnAtac")
@@ -433,9 +436,9 @@ const botonBlock = document.getElementById("btnBloc")
 
 
     while((per.vida >= 0 && enem.vida >= 0)){
-            const golpePe = calcularGolpeP()
-            const golpeMo = calcularGolpeM1()
-            const magiaPe = calcularMagiaP()
+            let golpePe = calcularGolpeP()
+            let golpeMo = calcularGolpeM1()
+            let magiaPe = calcularMagiaP()
            
             botonAtac.onclick=()=>{
         
@@ -476,24 +479,19 @@ const botonBlock = document.getElementById("btnBloc")
 
 function victoriaDerrota(a,b){
     if ( (a.vida  >= 0) && (b.vida <=0)){
-       alertaVictoria();
-        // let pasarLvl=document.createElement("div");
-        // pasarLvl.className="text-center";
-        // pasarLvl.innerHTML=`
-        // <button id="btn1-2" class="btn btn-primary">Empezar Aventura</button>
-        //     `
-        // pasarLvl.append(pasarNivel);	
+       alertaVictoria(ciclo);
+   
     } else if((b.vida >=0 )&& (a.vida  <= 0)){
       alertaDerrota();
-        // let volver=document.createElement("div");
-        // volver.className="text-center";
-        // volver.innerHTML=`
-        // <a href="seleccion.html" class="btn btn-primary">Empezar Aventura</a>
-        //     `
-        // volver.append(pasarNivel);	
+       	
+    }else if((b.vida <=0 )&& (a.vida  <= 0)){
+        alertaDerrota();
+       	
     }
 }
-function alertaVictoria(){
+let ciclo = 0;
+function alertaVictoria(a){
+    ciclo == 11 ? finalBoss() :
     Swal.fire({
         title: 'Victoria!!!',
         text: 'continua con el proximo desafio',
@@ -501,7 +499,19 @@ function alertaVictoria(){
         imageWidth: 400,
         imageHeight: 400,
         imageAlt: 'img batalla',
-      })
+        allowOutsideClick: false,
+        confirmButtonText: 'Continuar',
+        denyButtonText: `Abandonar`,
+      }).then((result) => {
+        
+        if (result.isConfirmed) {
+            ciclo ++
+            subirStats(miCharter);
+            pasarNivel1(miCharter,piso1[a]);
+
+        } else if (result.isDenied) {
+            location.reload();
+        }})
     }
     function alertaDerrota(){
         Swal.fire({
@@ -511,5 +521,48 @@ function alertaVictoria(){
             imageWidth: 400,
             imageHeight: 400,
             imageAlt: 'img batalla',
-          })
+            allowOutsideClick: false,
+            confirmButtonText: 'Volver',
+            denyButtonText: `Abandonar`,
+          }).then((result) => {
+            
+            if (result.isConfirmed) {
+                location.reload();
+            }      
+            })
         }
+
+    function subirStats(a){
+        a.vida =a.vida + 400*ciclo;
+        a.fuerza=a.fuerza+ 2*ciclo ;
+       a.magia = a.magia+ 2*ciclo;
+       a.golpeF= a.golpeF+20;
+       a.golpeM=a.golpeM+20;
+    }
+     function pasarNivel1(a,b){
+        inFigth(a,b);
+        batalla(a,b);
+   }     
+
+function finalBoss(){
+    Swal.fire({
+    title: 'Felicitaciones!!!',
+    text: 'Haz despejado la mazmorra',
+    imageUrl:("/img/personajes-seleccion/victoria.jpg"),
+    imageWidth: 400,
+    imageHeight: 400,
+    imageAlt: 'img batalla',
+    allowOutsideClick: false,
+    confirmButtonText: 'Continuar',
+    denyButtonText: `Abandonar`,
+  }).then((result) => {
+    if (result.isConfirmed) {
+        console.log("juego terminado")
+    }  }   )
+    } 
+
+  
+
+
+
+

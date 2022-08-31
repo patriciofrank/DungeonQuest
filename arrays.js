@@ -105,23 +105,13 @@ piso1.push(mostruo1);
 piso1.push(mostruo2);
 piso1.push(mostruo3);
 piso1.push(mostruo4);
+piso1.push(mostruo5);
+piso1.push(mostruo6);
+piso1.push(mostruo7);
+piso1.push(mostruo8);
+piso1.push(mostruo9);
+piso1.push(mostruo10);
+piso1.push(mostruo11);
+piso1.push(mostruo12);
 
 console.table(piso1)
-
-const piso2 = [];
-
-piso2.push(mostruo5);
-piso2.push(mostruo6);
-piso2.push(mostruo7);
-piso2.push(mostruo8);
-
-console.table(piso2)
-
-const piso3=[];
-
-piso3.push(mostruo9);
-piso3.push(mostruo10);
-piso3.push(mostruo11);
-piso3.push(mostruo12);
-
-console.table(piso3)
