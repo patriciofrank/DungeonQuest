@@ -441,13 +441,13 @@ const botonBlock = document.getElementById("btnBloc")
                 per.vida.push=resul2;
              
                 Swal.fire({ 
-                title: "Atacas al enemigo y realizas "+golpePe+ "de daño a su vida.",
+                title: "Atacas al enemigo y realizas "+golpePe+ " de daño a su vida.",
                 showConfirmButton: false,
                 timer: 0,
                     })
                 setTimeout(()=>
                     Swal.fire({ 
-                        title: "El enemigo ataca y realiza  "+golpeMo+ "de daño a tu vida.",
+                        title: "El enemigo ataca y realiza  "+golpeMo+ " de daño a tu vida.",
                         showConfirmButton: false,
                             }),500)
 
@@ -455,20 +455,30 @@ const botonBlock = document.getElementById("btnBloc")
             }
         
         botonMag.onclick=()=>{
-            
-            consola.innerHTML =`<p>Atacas al enemigo con un golpe magico de ${golpePe}. </p>`
             let resul=  enem.vida -= magiaPe;
-                enem.vida.push=resul;
-                console.log (`El enemigo te ataca y pierdes ${golpeMo} de vida.`)
+                enem.vida.push=resul
             let resul2=   per.vida -= golpePe;
-            
+    
                 per.vida.push=resul2;
-             
+                Swal.fire({ 
+                    title: "Atacas al enemigo con un hechizo y realizas "+magiaPe+ " de daño a su vida.",
+                    showConfirmButton: false,
+                    timer: 0,
+                        })
+                    setTimeout(()=>
+                        Swal.fire({ 
+                            title: "El enemigo ataca y realiza  "+golpeMo+ " de daño a tu vida.",
+                            showConfirmButton: false,
+                                }),500)
                 inFigth(per,enem)
             }
 
             botonBlock.onclick=()=>{
-                console.log("Ataque enemigo bloqueado !")
+                Swal.fire({ 
+                    title: "El ataque enemigo fue bloqueado",
+                    showConfirmButton: false,
+                    timer: 0,
+                        })
                 inFigth(per,enem)
             } 
 
@@ -497,7 +507,7 @@ function victoriaDerrota(a,b){
     }
 }
 // Alertas de Resultado de Batalla
-let ciclo = 0;
+let ciclo = 1;
 function alertaVictoria(a){
     ciclo == 12 ? finalBoss() :
     Swal.fire({
@@ -521,6 +531,7 @@ function alertaVictoria(a){
             location.reload();
         }})
     }
+
     function alertaDerrota(){
         Swal.fire({
             title: 'Derrota!!!',
