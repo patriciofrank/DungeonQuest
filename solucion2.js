@@ -297,16 +297,7 @@ function recup(a){
     miCharter.append(charter);
 
     }
-function alertaBatalla(){
-    Swal.fire({
-        title: 'Preparate!',
-        text: 'Afila tu espada y comienza la batalla',
-        imageUrl:("/img/personajes-seleccion/CrossSword.png"),
-        imageWidth: 400,
-        imageHeight: 400,
-        imageAlt: 'img batalla',
-      })
-    }
+
     function comenzar(){
         let btnEmpezar=document.getElementById("volver")
         let botonEmpezar = document.createElement("button");
@@ -361,7 +352,7 @@ function batallaPiso1(a,b){
             </div>
         </div>
         <div class="card">
-            <div class="card-body">
+            <div id="consolBt" class="card-body">
            
             </div>
         </div>
@@ -398,7 +389,7 @@ function inFigth(a,b){
             </div>
         </div>
         <div class="card">
-            <div class="card-body">
+            <div id="consolBt" class="card-body">
            
             </div>
         </div>
@@ -432,30 +423,40 @@ const botonAtac = document.getElementById("btnAtac")
 const botonMag = document.getElementById("btnMag")
 const botonBlock = document.getElementById("btnBloc")
 
-// let figth = 0
-
 
     while((per.vida >= 0 && enem.vida >= 0)){
             let golpePe = calcularGolpeP()
             let golpeMo = calcularGolpeM1()
             let magiaPe = calcularMagiaP()
-           
-            botonAtac.onclick=()=>{
-        
-            console.log (`Atacas al enemigo con un golpe de ${golpePe}. `)
-            let resul=  enem.vida -= golpePe;
+            let consola=document.getElementById("consolBt")
+            let narrador=document.createElement("div")
+            consola.append(narrador)
+
+            botonAtac.onclick=()=>{        
+              
+                let resul=  enem.vida -= golpePe;
                 enem.vida.push=resul;
-                console.log (`El enemigo te ataca y pierdes ${golpeMo} de vida.`)
-            let resul2=   per.vida -= golpePe;
-            
+                
+                let resul2=   per.vida -= golpeMo;
                 per.vida.push=resul2;
-            
-                inFigth(per,enem)
+             
+                Swal.fire({ 
+                title: "Atacas al enemigo y realizas "+golpePe+ "de daño a su vida.",
+                showConfirmButton: false,
+                timer: 0,
+                    })
+                setTimeout(()=>
+                    Swal.fire({ 
+                        title: "El enemigo ataca y realiza  "+golpeMo+ "de daño a tu vida.",
+                        showConfirmButton: false,
+                            }),500)
+
+                inFigth(per,enem)            
             }
         
         botonMag.onclick=()=>{
-        
-            console.log (`Atacas al enemigo con un golpe magico de ${golpePe}. `)
+            
+            consola.innerHTML =`<p>Atacas al enemigo con un golpe magico de ${golpePe}. </p>`
             let resul=  enem.vida -= magiaPe;
                 enem.vida.push=resul;
                 console.log (`El enemigo te ataca y pierdes ${golpeMo} de vida.`)
@@ -476,26 +477,33 @@ const botonBlock = document.getElementById("btnBloc")
  }
  
 } 
-
+//Determinar Resultado de batalla
 function victoriaDerrota(a,b){
     if ( (a.vida  >= 0) && (b.vida <=0)){
-       alertaVictoria(ciclo);
+      setTimeout(() => {
+        alertaVictoria(ciclo);
+      }, 1500); 
    
     } else if((b.vida >=0 )&& (a.vida  <= 0)){
-      alertaDerrota();
+        setTimeout(() => {
+            alertaDerrota();
+          }, 1500); 
        	
     }else if((b.vida <=0 )&& (a.vida  <= 0)){
-        alertaDerrota();
+        setTimeout(() => {
+            alertaDerrota();
+          }, 1500); 
        	
     }
 }
+// Alertas de Resultado de Batalla
 let ciclo = 0;
 function alertaVictoria(a){
-    ciclo == 11 ? finalBoss() :
+    ciclo == 12 ? finalBoss() :
     Swal.fire({
         title: 'Victoria!!!',
         text: 'continua con el proximo desafio',
-        imageUrl:("/img/personajes-seleccion/victoria.jpg"),
+        imageUrl:("img/personajes-seleccion/victoria.jpg"),
         imageWidth: 400,
         imageHeight: 400,
         imageAlt: 'img batalla',
@@ -517,7 +525,7 @@ function alertaVictoria(a){
         Swal.fire({
             title: 'Derrota!!!',
             text: 'Entrena un poco mas y vuelve a intentarlo',
-            imageUrl:("/img/personajes-seleccion/muerto.png"),
+            imageUrl:("img/personajes-seleccion/muerto.png"),
             imageWidth: 400,
             imageHeight: 400,
             imageAlt: 'img batalla',
@@ -531,38 +539,47 @@ function alertaVictoria(a){
             }      
             })
         }
-
+// Funcion Para aumentar stats entre batallas 
     function subirStats(a){
-        a.vida =a.vida + 400*ciclo;
+        a.vida =a.vida + 500*ciclo;
         a.fuerza=a.fuerza+ 2*ciclo ;
        a.magia = a.magia+ 2*ciclo;
        a.golpeF= a.golpeF+20;
        a.golpeM=a.golpeM+20;
     }
+//Funcion Para pasar de oponente 
      function pasarNivel1(a,b){
         inFigth(a,b);
         batalla(a,b);
    }     
+//Alerta de Final de Juego !
+    function finalBoss(){
+        Swal.fire({
+        title: 'Felicitaciones!!!',
+        text: 'Haz despejado la mazmorra',
+        imageUrl:("img/monstruos.png/victoriaF.jpg"),
+        imageWidth: 400,
+        imageHeight: 400,
+        imageAlt: 'img batalla',
+        allowOutsideClick: false,
+        confirmButtonText: 'Continuar',
+        denyButtonText: `Abandonar`,
+        }).then((result) => {
+        if (result.isConfirmed) {
+            console.log("juego terminado")
+        }  }   )
+        } 
 
-function finalBoss(){
-    Swal.fire({
-    title: 'Felicitaciones!!!',
-    text: 'Haz despejado la mazmorra',
-    imageUrl:("/img/personajes-seleccion/victoria.jpg"),
-    imageWidth: 400,
-    imageHeight: 400,
-    imageAlt: 'img batalla',
-    allowOutsideClick: false,
-    confirmButtonText: 'Continuar',
-    denyButtonText: `Abandonar`,
-  }).then((result) => {
-    if (result.isConfirmed) {
-        console.log("juego terminado")
-    }  }   )
-    } 
-
-  
-
-
+    // Alerta inicio de Juego
+    function alertaBatalla(){
+        Swal.fire({
+            title: 'Preparate!',
+            text: 'Afila tu espada y comienza la batalla',
+            imageUrl:("img/personajes-seleccion/CrossSword.png"),
+            imageWidth: 400,
+            imageHeight: 400,
+            imageAlt: 'img batalla',
+          })
+        }
 
 
