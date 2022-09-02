@@ -1,0 +1,26 @@
+[
+    {
+    "titulo":"Felicitaciones!!",   
+    "texto":"Lograste concluir el juego con exito"
+    },
+    {
+        "titulo":"Este proyecto",   
+        "texto":"Se realizo para poner en practica los conocimientos logrados en el curso de JS de CoderHouse"
+    },
+    {
+        "titulo":"Gracias por probarlo y espero que lo disfrutaran",   
+        "texto":"para ver mas proyectos siganme en linkedin , enlace en el footer"
+    },
+    {
+        "titulo":"Congratulations!!",   
+        "texto":"You finished the game succesfully"
+    },
+    {
+        "titulo":"This project",   
+        "texto":"was made to practice  the skills and knowledge learned in CoderHouse Js course"
+    },
+    {
+        "titulo":"thanks for testing and i hope you enjoyed it",   
+        "texto":"i leave my linkedin profile in the footer for more information "
+    }
+]

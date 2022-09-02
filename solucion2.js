@@ -1,6 +1,8 @@
    let nombreElegido;
-   let miPersonaje=[]
+   let epilogo=[];
+   let miPersonaje=[];
    let miCharter;
+   
 //    si Hay personaje guardado el el storage Local
    if(localStorage.getItem("miPersonaje")!=null){
    miPersonaje=JSON.parse(localStorage.getItem("miPersonaje"))
@@ -151,6 +153,16 @@ function noDisplay7(){
 function noDisplay8(){
     let borrado=document.querySelector("#crearBtn")
     borrado.style= `display:none`;
+}
+function noDisplayAll(){
+    noDisplay();
+    noDisplay1();
+    noDisplay3();
+    noDisplay4();
+    noDisplay5();
+    noDisplay6();
+    noDisplay7();
+    noDisplay8();
 }
 //Boton volver
 function volver(){
@@ -306,9 +318,9 @@ function recup(a){
         btnEmpezar.append(botonEmpezar);
         botonEmpezar.onclick=()=>{
                 alertaBatalla();
-                batallaPiso1(miPersonaje[ultimoCh],piso1[0]);
                 noDisplay5();
                 noDisplay6();
+                batallaPiso1(miPersonaje[ultimoCh],piso1[0]);
         };
     }
 
@@ -316,12 +328,12 @@ function recup(a){
    //Funciones de Pelea
 
 const ultimoCh=miPersonaje.length-1;
-console.log(ultimoCh)
+
 
 function botonesDeAccion(){
     let batallaBtn=document.getElementById("btnB");
     let botoneraB=document.createElement("div");
-    botoneraB.style="display:flex";
+    botoneraB.style="display:flex ";
     botoneraB.innerHTML =`
     <button value="atacar" id="btnAtac" class="btnAccion d-grid gap-4 col-4 mx-auto btn btn-primary">Atacar</button>
     <button value="magia" id="btnMag" class="btnAccion d-grid gap-4 col-4 mx-auto btn btn-primary">Magia</button>
@@ -338,26 +350,20 @@ function batallaPiso1(a,b){
     bt1.className="card-group";
     bt1.innerHTML=`
         <div class="card">
-            <img src="${a.imagen}" class="img-fluid rounded-start" alt="${a.raza}-${a.clase}" style="max-width: 100%;">
+            <img src="${a.imagen}" class="img-fluid rounded-start" alt="${a.raza}-${a.clase}" style="width: 100%;">
             <div class="card-body">
                     <h2 class="card-title">Nombre: ${a.nombre}</h2>
-                    <h5 class="card-title">Raza: ${a.raza} Clase: ${a.clase} </h5>
+                    <h5 class="card-title">Raza : ${a.raza} </br>  Clase : ${a.clase} </h5>
                     <p class="card-text">Vitada: ${a.vida}</p>
                     <p class="card-text">Daño Fisico ${a.golpeF}</p>
                     <p class="card-text">Daño Magico ${a.golpeM}</p>
-                    <p class="card-text">Vitalidad: ${a.vitalidad}</p>
-                    <p class="card-text">Fuerza ${a.fuerza}</p>
-                    <p class="card-text">Magia ${a.magia}</p>
-                    <p class="card-text">Agilidad ${a.agilidad}</p>
+                   
             </div>
         </div>
-        <div class="card">
-            <div id="consolBt" class="card-body">
-           
-            </div>
+       
         </div>
         <div class="card">
-            <img src="${b.imagen}" class="img-fluid rounded-start" alt="${b.nombre}">
+            <img src="${b.imagen}" class="img-fluid rounded-start" alt="${b.nombre}" style="width: 100%;">
         <div class="card-body">
                 <h2 class="card-title">Nombre: ${b.nombre}</h2>   
                 <p class="card-text">Vida: ${b.vida}</p>
@@ -372,29 +378,22 @@ function batallaPiso1(a,b){
 }
 
 function inFigth(a,b){
+    
     let batalla1=document.getElementById("inFigth");   
     batalla1.innerHTML=`
         <div class="card">
-            <img src="${a.imagen}" class="img-fluid rounded-start" alt="${a.raza}-${a.clase}" style="max-width: 100%;">
+            <img src="${a.imagen}" class="img-fluid rounded-start" alt="${a.raza}-${a.clase}" style="width: 100%;">
             <div class="card-body">
                     <h2 class="card-title">Nombre: ${a.nombre}</h2>
                     <h5 class="card-title">Raza: ${a.raza} Clase: ${a.clase} </h5>
                     <p class="card-text">Vitada: ${a.vida}</p>
                     <p class="card-text">Daño Fisico ${a.golpeF}</p>
                     <p class="card-text">Daño Magico ${a.golpeM}</p>
-                    <p class="card-text">Vitalidad: ${a.vitalidad}</p>
-                    <p class="card-text">Fuerza ${a.fuerza}</p>
-                    <p class="card-text">Magia ${a.magia}</p>
-                    <p class="card-text">Agilidad ${a.agilidad}</p>
             </div>
         </div>
+        
         <div class="card">
-            <div id="consolBt" class="card-body">
-           
-            </div>
-        </div>
-        <div class="card">
-            <img src="${b.imagen}" class="img-fluid rounded-start" alt="${b.nombre}">
+            <img src="${b.imagen}" class="img-fluid rounded-start" alt="${b.nombre} style="width: 100%;"">
         <div class="card-body">
                 <h2 class="card-title">Nombre: ${b.nombre}</h2>   
                 <p class="card-text">Vida: ${b.vida}</p>
@@ -402,7 +401,7 @@ function inFigth(a,b){
                 <p class="card-text">Agilidad: ${b.agilidad}</p>
         </div>
     `;
-     
+   
    victoriaDerrota(a,b);
 
 }
@@ -416,7 +415,7 @@ const  golpeBatallaP = per.golpeF
 const  magiaBatallaP = per.golpeM
 const  golpeBatallaM1 = enem.golpe
 
-let calcularGolpeP = () => Math.round(Math.random() *100 + golpeBatallaP );
+const calcularGolpeP = () => Math.round(Math.random() *100 + golpeBatallaP );
 const calcularMagiaP = () => Math.round(Math.random() *100 + magiaBatallaP );
 const calcularGolpeM1 = () => Math.round(Math.random() *100 + golpeBatallaM1 );
 const botonAtac = document.getElementById("btnAtac")
@@ -428,10 +427,7 @@ const botonBlock = document.getElementById("btnBloc")
             let golpePe = calcularGolpeP()
             let golpeMo = calcularGolpeM1()
             let magiaPe = calcularMagiaP()
-            let consola=document.getElementById("consolBt")
-            let narrador=document.createElement("div")
-            consola.append(narrador)
-
+            
             botonAtac.onclick=()=>{        
               
                 let resul=  enem.vida -= golpePe;
@@ -451,7 +447,8 @@ const botonBlock = document.getElementById("btnBloc")
                         showConfirmButton: false,
                             }),500)
 
-                inFigth(per,enem)            
+                inFigth(per,enem)
+                         
             }
         
         botonMag.onclick=()=>{
@@ -471,6 +468,7 @@ const botonBlock = document.getElementById("btnBloc")
                             showConfirmButton: false,
                                 }),500)
                 inFigth(per,enem)
+               
             }
 
             botonBlock.onclick=()=>{
@@ -480,8 +478,9 @@ const botonBlock = document.getElementById("btnBloc")
                     timer: 0,
                         })
                 inFigth(per,enem)
+               
             } 
-
+            
             break;
            
  }
@@ -552,9 +551,7 @@ function alertaVictoria(a){
         }
 // Funcion Para aumentar stats entre batallas 
     function subirStats(a){
-        a.vida =a.vida + 500*ciclo;
-        a.fuerza=a.fuerza+ 2*ciclo ;
-       a.magia = a.magia+ 2*ciclo;
+        a.vida =a.vida + 200*ciclo;
        a.golpeF= a.golpeF+20;
        a.golpeM=a.golpeM+20;
     }
@@ -577,7 +574,8 @@ function alertaVictoria(a){
         denyButtonText: `Abandonar`,
         }).then((result) => {
         if (result.isConfirmed) {
-            console.log("juego terminado")
+            renderEpilogo();
+            epilogoCreacion();
         }  }   )
         } 
 
@@ -593,4 +591,33 @@ function alertaVictoria(a){
           })
         }
 
+// Creacion Epilogo final
+async function epilogoCreacion(){
+    const URLJSON="Final.json"
+    const resp= await fetch(URLJSON)
+    const data= await resp.json()
+    epilogo=data;
+    renderEpilogo();
+    
+}
 
+//Render Epilogo
+function renderEpilogo(){
+    let docPrint=document.getElementById("epilogo"); 
+    let dPrint=document.createElement("div")
+    console.log(epilogo)
+    let pos=0
+     const interval = setInterval(() => {
+        pos ++  
+        
+        dPrint.innerHTML=`
+        <h2>${epilogo[pos].titulo}</h2>
+        <h5>${epilogo[pos].texto}</h5>
+        `
+        docPrint.append(dPrint);  
+        interval == epilogo.length ? clearInterval(interval):interval
+        
+    }, 8000);     
+   
+
+}
