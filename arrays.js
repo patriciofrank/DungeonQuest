@@ -10,7 +10,7 @@ class RAZA{
   let Humano=new RAZA ("img/personajes-seleccion/Humanos.png","Humano","Gran balance de estadisticas brindandoles un equilibrio perfecto para cualquier clase");
   let Elfo=new RAZA("img/personajes-seleccion/Elfos.png","Elfo","Destacados por su agilidad y su magia son letales al momento de ataques furtivos")
   let Enano=new RAZA("img/personajes-seleccion/Enanos.png","Enano","Son una raza muy longeba y fuerte con destacados guerreros y artesanos")
-  let Gnomo=new RAZA("img/personajes-seleccion/Gnomos.png","Gnomo","Tienen una gran conexion con la naturaleza ,con los espiritus y el mana")
+  let Gnomo=new RAZA("img/personajes-seleccion/Gnomos.png","Gnomo","Tienen una gran conexion con la naturaleza ,00con los espiritus y el mana")
   const razas=[]
   razas.push(Humano);
   razas.push(Elfo);
@@ -86,18 +86,18 @@ class Monstruos{
 }
 }
 
-let mostruo1= new Monstruos("img/monstruos.png/GoblinJr.png","Goblin jr",10,35,25)
-let mostruo2= new Monstruos("img/monstruos.png/GoblinGuerrero.png","Goblin Guerrero",13,45,25)
-let mostruo3= new Monstruos("img/monstruos.png/GoblinCampeon.png","Goblin Campeon",18,55,20)
-let mostruo4= new Monstruos("img/monstruos.png/GoblinCapitan.png","Goblin Capitan",21,65,15)
-let mostruo5= new Monstruos("img/monstruos.png/Troll.png","Troll",15,65,25)
-let mostruo6= new Monstruos("img/monstruos.png/Orco.png","Orco",19,85,25)
-let mostruo7= new Monstruos("img/monstruos.png/Ogro.png","Ogro",20,120,25)
-let mostruo8= new Monstruos("img/monstruos.png/Golem.png","Golem",40,75,15)
-let mostruo9= new Monstruos("img/monstruos.png/lizardMan.png","Lizard Man",35,75,65)
-let mostruo10= new Monstruos("img/monstruos.png/Naga.png","Naga",44,135,75)
-let mostruo11= new Monstruos("img/monstruos.png/DragonBorn.png","Dragonoid",60,175,85)
-let mostruo12= new Monstruos("img/monstruos.png/Dragon.png","Dragon",100,275,95)
+let mostruo1= new Monstruos("img/monstruos.png/GoblinJr.png","Goblin jr",1000,35,25)
+let mostruo2= new Monstruos("img/monstruos.png/GoblinGuerrero.png","Goblin Guerrero",1300,45,25)
+let mostruo3= new Monstruos("img/monstruos.png/GoblinCampeon.png","Goblin Campeon",1800,55,20)
+let mostruo4= new Monstruos("img/monstruos.png/GoblinCapitan.png","Goblin Capitan",2100,65,15)
+let mostruo5= new Monstruos("img/monstruos.png/Troll.png","Troll",1500,65,25)
+let mostruo6= new Monstruos("img/monstruos.png/Orco.png","Orco",1900,85,25)
+let mostruo7= new Monstruos("img/monstruos.png/Ogro.png","Ogro",2000,120,25)
+let mostruo8= new Monstruos("img/monstruos.png/Golem.png","Golem",4000,75,15)
+let mostruo9= new Monstruos("img/monstruos.png/lizardMan.png","Lizard Man",3500,75,65)
+let mostruo10= new Monstruos("img/monstruos.png/Naga.png","Naga",4400,135,75)
+let mostruo11= new Monstruos("img/monstruos.png/DragonBorn.png","Dragonoid",6000,175,85)
+let mostruo12= new Monstruos("img/monstruos.png/Dragon.png","Dragon",10000,275,95)
 
 const piso1 = [];
 

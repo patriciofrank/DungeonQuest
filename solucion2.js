@@ -2,7 +2,15 @@
    let epilogo=[];
    let miPersonaje=[];
    let miCharter;
-   
+   let sonidoAtacar= new Audio("sonidos/atacar.mp3");
+   let sonidoMagia= new Audio("sonidos/magia.mp3");
+   let sonidoSeleccion= new Audio("sonidos/seleccion.mp3");
+   let sonidoComienzo= new Audio("sonidos/comienzo.mp3");
+   let sonidoBloqueo= new Audio("sonidos/bloqueo.mp3");
+   let sonidoFinal= new Audio("sonidos/juegoGanado.mp3");
+   let sonidoDerrota= new Audio("sonidos/derrota.mp3");
+
+
 //    si Hay personaje guardado el el storage Local
    if(localStorage.getItem("miPersonaje")!=null){
    miPersonaje=JSON.parse(localStorage.getItem("miPersonaje"))
@@ -58,6 +66,8 @@
     volver();
     noDisplay();
     noDisplay4();
+    sonidoSeleccion.play();
+
     
 };
 
@@ -253,6 +263,8 @@ function crearPersonaje(){
         alertaBatalla()
         batallaPiso1(miPersonaje[ultimoCh+1],piso1[0]);
         miCharter=miPersonaje[ultimoCh+1]
+        sonidoSeleccion.pause()
+        sonidoComienzo.play();
        
        
     }
@@ -271,6 +283,7 @@ function recuperarPersonaje(a){
             volver();
             noDisplay();
             noDisplay4();
+            sonidoSeleccion.play()
         }
 
 }
@@ -318,6 +331,8 @@ function recup(a){
                 noDisplay5();
                 noDisplay6();
                 batallaPiso1(miPersonaje[ultimoCh],piso1[0]);
+                sonidoSeleccion.pause();
+                sonidoComienzo.play();
         };
     }
 
@@ -379,7 +394,7 @@ function inFigth(a,b){
     let batalla1=document.getElementById("inFigth");   
     batalla1.innerHTML=`
         <div class="card">
-            <img src="${a.imagen}" class="img-fluid rounded-start" alt="${a.raza}-${a.clase}" style="width: 100%;">
+            <img src="${a.imagen}" class="img-fluid mx-auto rounded-start" alt="${a.raza}-${a.clase}" style="width: 100%;">
             <div class="card-body">
                     <h2 class="card-title">Nombre: ${a.nombre}</h2>
                     <h5 class="card-title">Raza: ${a.raza} Clase: ${a.clase} </h5>
@@ -390,7 +405,7 @@ function inFigth(a,b){
         </div>
         
         <div class="card">
-            <img src="${b.imagen}" class="img-fluid rounded-start" alt="${b.nombre} style="width: 100%;"">
+            <img src="${b.imagen}" class="img-fluid mx-auto rounded-start" alt="${b.nombre}" style="width: 100%;">
         <div class="card-body">
                 <h2 class="card-title">Nombre: ${b.nombre}</h2>   
                 <p class="card-text">Vida: ${b.vida}</p>
@@ -400,7 +415,7 @@ function inFigth(a,b){
     `;
    
    victoriaDerrota(a,b);
-
+   sonidoAtacar.currentTime= 0;
 }
 
 
@@ -426,7 +441,9 @@ const botonBlock = document.getElementById("btnBloc")
             let magiaPe = calcularMagiaP()
             
             botonAtac.onclick=()=>{        
-              
+                sonidoAtacar.play()
+                sonidoMagia.pause()
+                
                 let resul=  enem.vida -= golpePe;
                 enem.vida.push=resul;
                 
@@ -453,6 +470,8 @@ const botonBlock = document.getElementById("btnBloc")
             }
         
         botonMag.onclick=()=>{
+            sonidoMagia.play();
+            sonidoAtacar.pause();
             let resul=  enem.vida -= magiaPe;
                 enem.vida.push=resul
             let resul2=   per.vida -= golpePe;
@@ -477,6 +496,8 @@ const botonBlock = document.getElementById("btnBloc")
             }
 
             botonBlock.onclick=()=>{
+                sonidoAtacar.pause();
+                sonidoBloqueo.play();
                 Swal.fire({ 
                     title: "El ataque enemigo fue bloqueado",
                     background:'#34343f',
@@ -498,16 +519,21 @@ function victoriaDerrota(a,b){
     if ( (a.vida  >= 0) && (b.vida <=0)){
       setTimeout(() => {
         alertaVictoria(ciclo);
+        sonidoAtacar.pause();
       }, 1500); 
    
     } else if((b.vida >=0 )&& (a.vida  <= 0)){
         setTimeout(() => {
             alertaDerrota();
+            sonidoDerrota.play();
+            sonidoAtacar.pause();
           }, 1500); 
        	
     }else if((b.vida <=0 )&& (a.vida  <= 0)){
         setTimeout(() => {
             alertaDerrota();
+            sonidoDerrota.play();
+            sonidoAtacar.pause();
           }, 1500); 
        	
     }
@@ -589,6 +615,7 @@ function alertaVictoria(a){
         if (result.isConfirmed) {
             noDisplay9();
             epilogoCreacion();
+            sonidoFinal.play();
 
         }  }   )
         } 
@@ -604,7 +631,12 @@ function alertaVictoria(a){
             imageWidth: 400,
             imageHeight: 400,
             imageAlt: 'img batalla',
-          })
+          }).then((result) => {
+            if (result.isConfirmed) {
+                sonidoComienzo.pause()
+    
+            }  }   )
+          
         }
 
 // Creacion Epilogo final
