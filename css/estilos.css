@@ -1,37 +1,84 @@
 html {
   box-sizing: border-box;
+  background-color: #292936;
 }
 
 *, *:before, *:after {
   box-sizing: inherit;
 }
 
-.inicio {
+body {
+  color: white;
+}
+body #index {
   display: flex;
   font-family: "Silkscreen", cursive;
+  color: white;
   align-items: center;
   justify-content: center;
   background-repeat: round;
   background-size: contain;
 }
-.inicio a {
-  margin-top: 120%;
+body div {
+  background-color: #292936;
 }
-
-h1, h2, h3, h4, h5 {
+body div input {
+  margin-top: 2rem;
+}
+body #btnB {
+  position: absolute;
+}
+@media (max-width: 575px) {
+  body #btnB {
+    position: fixed;
+    top: 50%;
+  }
+}
+body h4, body h5 {
   font-family: "Cinzel", serif;
+  color: white;
+  margin-top: 1rem;
 }
-
-p {
+body h1, body h2, body h3 {
+  font-family: "Cinzel", serif;
+  color: white;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+body p {
   font-family: "Silkscreen", cursive;
+  color: white;
 }
-
-.chart {
+body .chart {
   display: grid;
   grid-auto-flow: row;
 }
-
-.card img {
+body .card {
+  background-color: #34343f;
+  text-align: center;
+}
+body .card img {
   max-width: 600px;
   height: auto;
+}
+body .btn {
+  margin: 1rem;
+  background-color: #ed72c0;
+}
+body #epilogo {
+  display: none;
+  border: aqua solid 10px;
+  text-align: center;
+  height: 30rem;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+footer {
+  display: flex;
+}
+footer div {
+  display: flex;
+  justify-content: unset;
 }/*# sourceMappingURL=estilos.css.map */

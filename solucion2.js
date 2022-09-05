@@ -20,19 +20,17 @@
       selector.append(tituloRaza)
     for(const cadauna of razas){
         let select=document.createElement("div");
-        select.className="card col-sm-6 col-md-6 col-lg-3";
+        select.className="card col-sm-12 col-md-6 col-lg-3";
         select.style="margin-bottom: 1rem"
         select.innerHTML=`
-        <div class="card"  style="width: 100%;">
-            <img src="${cadauna.imagen}" class="card-img-top text-center" alt="Imagen${cadauna.nombre}">
+                <img src="${cadauna.imagen}" class="card-img-top mx-auto" alt="Imagen${cadauna.nombre}">
                 <div class="card-body text-center">
                 <h5 class="card-title">Raza: ${cadauna.nombre}</h5>
                 <p class="card-text"><b>Descripcion :</b></br> ${cadauna.desc}</p>
                 </div>
             <div class="text-center">
-                <button id="btn${cadauna.nombre}" style="width: 100%;"  class=" btn btn-primary" value="${cadauna.nombre}" >Elegir Raza</a>
+                <button id="btn${cadauna.nombre}"   class=" btn btn-primary" value="${cadauna.nombre}" >Elegir Raza</a>
             </div>
-        </div>
         `;
         selector.append(select);
     } 
@@ -154,21 +152,19 @@ function noDisplay8(){
     let borrado=document.querySelector("#crearBtn")
     borrado.style= `display:none`;
 }
-function noDisplayAll(){
-    noDisplay();
-    noDisplay1();
-    noDisplay3();
-    noDisplay4();
-    noDisplay5();
-    noDisplay6();
-    noDisplay7();
-    noDisplay8();
+function noDisplay9(){
+    let docPrint=document.getElementById("epilogo"); 
+    docPrint.style=`display:auto`
+    let borrado=document.querySelector("#batalla1")
+    borrado.style= `display:none`;
+    let borrado1=document.querySelector("#btnB")
+    borrado1.style= `display:none`;    
 }
 //Boton volver
 function volver(){
     let volv = document.getElementById("volver");
     let botonEsc = document.createElement("button");
-    botonEsc.className="btn btn-primary ";
+    botonEsc.className="btn btn-primary mx-auto";
     botonEsc.innerText ="Volver"
     volv.append(botonEsc);
 
@@ -182,12 +178,12 @@ function miEleccion(chart){
     let miCharter=document.getElementById("personaje");    
     let charter=document.createElement("div");
 
-    charter.className="card col-sm-12 card col-md-12 col-lg-12";
+    charter.className="card col-12";
     charter.innerHTML=`
-    <div class="card mb-3" style="max-width: 100%;">
+    <div class="card mb-3">
     <div class="row g-0">
       <div class="col-md-8">
-        <img src="${chart.imagen}" class="img-fluid rounded-start" alt="${chart.raza}-${chart.clase}">
+        <img src="${chart.imagen}" class="img-fluid rounded-start" alt="${chart.raza}-${chart.clase}" style="width:100%;">
       </div>
       <div class="col-md-4">
   
@@ -208,10 +204,10 @@ function miEleccion(chart){
     miCharter.append(charter);
     let chartName=document.getElementById("Bnombre");
     let nombrech=document.createElement("div")
-    nombrech.className=("d-grid gap-2 col-10 mx-auto");
+    nombrech.className=("d-grid gap-2  mx-auto");
     nombrech.innerHTML=`  
-    <input type="email" class="col-4 mx-auto" id="input" placeholder="Elige el nombre de tu personaje">
-    <button  id="miPersonaje" class="d-grid gap-2 col-2 mx-auto btn btn-primary">
+    <input type="email" class=" mx-auto" id="input" placeholder="Elige el nombre de tu personaje">
+    <button  id="miPersonaje" class="d-grid gap-2 mx-auto btn btn-primary">
         Elegir
     </button>
     `; 
@@ -230,6 +226,7 @@ function elegirNombre(){
          if(nombreElegido!=""){
             let nombrePersonaje=document.getElementById("nombre")
             let nombreAsignado=document.createElement("h2")
+            nombreAsignado.style=`margin-bottom: 0px;`
             nombreAsignado.innerText=`${nombreElegido}`
             nombrePersonaje.append(nombreAsignado)
     }
@@ -264,7 +261,7 @@ function crearPersonaje(){
 function recuperarPersonaje(a){
     let crear= document.getElementById("crearPersonaje");
     let recPers =document.createElement("button");
-    recPers.className="btn btn-primary";
+    recPers.className="btn btn-primary  mx-auto";
     recPers.innerText="Recuperar Personaje"
     crear.append(recPers)
     miCharter=a;
@@ -284,10 +281,10 @@ function recup(a){
 
     charter.className="card col-sm-12 card col-md-12 col-lg-12";
     charter.innerHTML=`
-    <div class="card mb-3" style="max-width: 100%;">
+    <div class="card mb-3" >
     <div class="row g-0">
       <div class="col-md-8">
-        <img src="${a.imagen}" class="img-fluid rounded-start" alt="${a.raza}-${a.clase}">
+        <img src="${a.imagen}" style="width: 100%;" class="img-fluid rounded-start" alt="${a.raza}-${a.clase}">
       </div>
       <div class="col-md-4">
   
@@ -438,12 +435,16 @@ const botonBlock = document.getElementById("btnBloc")
              
                 Swal.fire({ 
                 title: "Atacas al enemigo y realizas "+golpePe+ " de daño a su vida.",
+                background:'#34343f',
+                color:'#ed72c0',
                 showConfirmButton: false,
                 timer: 0,
                     })
                 setTimeout(()=>
                     Swal.fire({ 
                         title: "El enemigo ataca y realiza  "+golpeMo+ " de daño a tu vida.",
+                        background:'#34343f',
+                        color:'#ed72c0',
                         showConfirmButton: false,
                             }),500)
 
@@ -459,12 +460,16 @@ const botonBlock = document.getElementById("btnBloc")
                 per.vida.push=resul2;
                 Swal.fire({ 
                     title: "Atacas al enemigo con un hechizo y realizas "+magiaPe+ " de daño a su vida.",
+                    background:'#34343f',
+                    color:'#ed72c0',
                     showConfirmButton: false,
                     timer: 0,
                         })
                     setTimeout(()=>
                         Swal.fire({ 
                             title: "El enemigo ataca y realiza  "+golpeMo+ " de daño a tu vida.",
+                            background:'#34343f',
+                            color:'#ed72c0',
                             showConfirmButton: false,
                                 }),500)
                 inFigth(per,enem)
@@ -474,6 +479,8 @@ const botonBlock = document.getElementById("btnBloc")
             botonBlock.onclick=()=>{
                 Swal.fire({ 
                     title: "El ataque enemigo fue bloqueado",
+                    background:'#34343f',
+                    color:'#ed72c0',
                     showConfirmButton: false,
                     timer: 0,
                         })
@@ -512,6 +519,8 @@ function alertaVictoria(a){
     Swal.fire({
         title: 'Victoria!!!',
         text: 'continua con el proximo desafio',
+        color:'#ed72c0',
+        background:'#292936',
         imageUrl:("img/personajes-seleccion/victoria.jpg"),
         imageWidth: 400,
         imageHeight: 400,
@@ -535,6 +544,8 @@ function alertaVictoria(a){
         Swal.fire({
             title: 'Derrota!!!',
             text: 'Entrena un poco mas y vuelve a intentarlo',
+            color:'#ed72c0',
+            background:'#292936',
             imageUrl:("img/personajes-seleccion/muerto.png"),
             imageWidth: 400,
             imageHeight: 400,
@@ -565,6 +576,8 @@ function alertaVictoria(a){
         Swal.fire({
         title: 'Felicitaciones!!!',
         text: 'Haz despejado la mazmorra',
+        color:'#ed72c0',
+        background:'#292936',
         imageUrl:("img/monstruos.png/victoriaF.jpg"),
         imageWidth: 400,
         imageHeight: 400,
@@ -574,8 +587,9 @@ function alertaVictoria(a){
         denyButtonText: `Abandonar`,
         }).then((result) => {
         if (result.isConfirmed) {
-            renderEpilogo();
+            noDisplay9();
             epilogoCreacion();
+
         }  }   )
         } 
 
@@ -584,6 +598,8 @@ function alertaVictoria(a){
         Swal.fire({
             title: 'Preparate!',
             text: 'Afila tu espada y comienza la batalla',
+            color:'#ed72c0',
+            background:'#292936',
             imageUrl:("img/personajes-seleccion/CrossSword.png"),
             imageWidth: 400,
             imageHeight: 400,
@@ -608,7 +624,7 @@ function renderEpilogo(){
     console.log(epilogo)
     let pos=0
      const interval = setInterval(() => {
-        pos ++  
+        
         
         dPrint.innerHTML=`
         <h2>${epilogo[pos].titulo}</h2>
@@ -616,8 +632,8 @@ function renderEpilogo(){
         `
         docPrint.append(dPrint);  
         interval == epilogo.length ? clearInterval(interval):interval
-        
-    }, 8000);     
+         pos ++ 
+    }, 6000);     
    
 
 }

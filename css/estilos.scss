@@ -1,38 +1,87 @@
 @import "variables";
 html {
   box-sizing: border-box;
-
+  background-color: $primario;
 }
 *, *:before, *:after {
   box-sizing: inherit;
 }
+body{
+  color: $blanco;
 
-.inicio {
+  #index {
     display: flex;
     font-family: $Parrafo;
+    color: $blanco;
     align-items: center;
     justify-content: center;  
     background-repeat: round;
     background-size: contain;
-    a{
-      margin-top: 120%;
-    }
-
+}
+div{
+  background-color: $primario;
+  input{
+    margin-top: 2rem;
+  }
 }
 
-h1,h2,h3,h4,h5{
+#btnB{
+  position: absolute;
+  
+}
+@media(max-width: 575px)  {
+  #btnB{
+    position: fixed;
+    top: 50%;
+  }
+} 
+  
+
+h4,h5{
   font-family: $titulo ;
+  color: $blanco; 
+  margin-top: 1rem;
+}
+h1,h2,h3{
+  font-family: $titulo ;
+  color: $blanco; 
+  margin-top: 3rem;
+  margin-bottom: 2rem;
 }
 p{
   font-family: $Parrafo;
+  color: $blanco;
 }
 .chart{
   display: grid;
   grid-auto-flow: row;
 }
 .card{
+  background-color: $secundario;
+  text-align: center;
 img{
   max-width: 600px;
   height:auto ;
 }
+}
+.btn{
+  margin: 1rem;
+  background-color: $colorBtn;
+}
+#epilogo{
+  display: none;
+  border: aqua solid 10px;
+  text-align: center;
+  height: 30rem;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+}
+footer{
+  display: flex;
+  div{
+    display: flex;
+    justify-content: unset;
+  }
 }
