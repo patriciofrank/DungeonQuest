@@ -9,7 +9,7 @@
     },
     {
         "titulo":"Gracias por probarlo y espero que lo disfrutaran",   
-        "texto":"para ver mas proyectos siganme en linkedin , enlace en el footer"
+        "texto":"para mi contacto dejo los enlaces de mi Github y Linkedin en el footer"
     },
     {
         "titulo":"Congratulations!!",   
@@ -17,10 +17,10 @@
     },
     {
         "titulo":"This project",   
-        "texto":"was made to practice  the skills and knowledge learned in CoderHouse Js course"
+        "texto":"was made to practice the skills and knowledge learned in CoderHouse Js course"
     },
     {
         "titulo":"thanks for testing and i hope you enjoyed it",   
-        "texto":"i leave my linkedin profile in the footer for more information "
+        "texto":"i leave my linkedin and Github profile in the footer for more information "
     }
 ]

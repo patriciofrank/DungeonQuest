@@ -9,7 +9,65 @@
    let sonidoBloqueo= new Audio("sonidos/bloqueo.mp3");
    let sonidoFinal= new Audio("sonidos/juegoGanado.mp3");
    let sonidoDerrota= new Audio("sonidos/derrota.mp3");
+//Pantalla de inicio
+let inicio=document.getElementById("borrado1")
+inicio.innerHTML=`
+<h1 class="text-center">Bienvenido a la seccion de creacion de Personaje</h1>
+<div class="d-grid gap-2 col-12 mx-auto">
+    <button id="btnEmpezar" class=" mx-auto btn btn-primary">
+        Crear Personaje
+    </button>
+</div>  
+`;
 
+//Funciones de borrado
+
+function noDisplay(){
+    let borrado=document.querySelector("#borrado1") 
+     borrado.style= `display:none`;
+  }
+ function noDisplay1(){
+     let borrado=document.querySelector("#opcionesRazas") 
+     borrado.style= `display:none`;
+ }
+ function noDisplay2(){
+     let borrado=document.querySelector("#clase") 
+     borrado.style= `display:none`;
+ }
+ function noDisplay3(){
+    let borrado=document.querySelector("#Bnombre") 
+    borrado.style= `display:none`;
+}
+function noDisplay4(){
+    let borrado=document.querySelector("#crearPersonaje .btn") 
+    borrado.style= `display:none`;
+}
+function noDisplay5(){
+    let borrado=document.querySelector("#personaje ") 
+    borrado.style= `display:none`;
+}
+function noDisplay6(){
+    let borrado=document.querySelector("#volver .btn")
+    borrado.style= `display:none`;
+}
+function noDisplay7(){
+    let borrado=document.querySelector("#nombre")
+    borrado.style= `display:none`;
+}
+function noDisplay8(){
+    let borrado=document.querySelector("#crearBtn")
+    borrado.style= `display:none`;
+}
+function noDisplay9(){
+    let docPrint=document.getElementById("epilogo"); 
+    docPrint.style=`display:auto`
+    let borrado=document.querySelector("#batalla1")
+    borrado.style= `display:none`;
+    let borrado1=document.querySelector("#btnB")
+    borrado1.style= `display:none`;    
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Funciones de Creacion de personaje
 
 //    si Hay personaje guardado el el storage Local
    if(localStorage.getItem("miPersonaje")!=null){
@@ -124,52 +182,6 @@ selec2.append(tituloClase);
 }
 
 
-//Funciones de borrado
-
-function noDisplay(){
-    let borrado=document.querySelector("#borrado1") 
-     borrado.style= `display:none`;
-  }
- function noDisplay1(){
-     let borrado=document.querySelector("#opcionesRazas") 
-     borrado.style= `display:none`;
- }
- function noDisplay2(){
-     let borrado=document.querySelector("#clase") 
-     borrado.style= `display:none`;
- }
- function noDisplay3(){
-    let borrado=document.querySelector("#Bnombre") 
-    borrado.style= `display:none`;
-}
-function noDisplay4(){
-    let borrado=document.querySelector("#crearPersonaje .btn") 
-    borrado.style= `display:none`;
-}
-function noDisplay5(){
-    let borrado=document.querySelector("#personaje ") 
-    borrado.style= `display:none`;
-}
-function noDisplay6(){
-    let borrado=document.querySelector("#volver .btn")
-    borrado.style= `display:none`;
-}
-function noDisplay7(){
-    let borrado=document.querySelector("#nombre")
-    borrado.style= `display:none`;
-}
-function noDisplay8(){
-    let borrado=document.querySelector("#crearBtn")
-    borrado.style= `display:none`;
-}
-function noDisplay9(){
-    let docPrint=document.getElementById("epilogo"); 
-    docPrint.style=`display:auto`
-    let borrado=document.querySelector("#batalla1")
-    borrado.style= `display:none`;
-    let borrado1=document.querySelector("#btnB")
-    borrado1.style= `display:none`;    
-}
 //Boton volver
 function volver(){
     let volv = document.getElementById("volver");
@@ -216,33 +228,45 @@ function miEleccion(chart){
     let nombrech=document.createElement("div")
     nombrech.className=("d-grid gap-2  mx-auto");
     nombrech.innerHTML=`  
-    <input type="email" class=" mx-auto" id="input" placeholder="Elige el nombre de tu personaje">
-    <button  id="miPersonaje" class="d-grid gap-2 mx-auto btn btn-primary">
-        Elegir
+    <input type="text" class=" mx-auto" id="input" placeholder="Elige el nombre de tu personaje">
+    <button  id="miPersonaje" type="submit" class="d-grid gap-2 mx-auto btn btn-primary">
+        Elegir Nombre
     </button>
     `; 
     chartName.append(nombrech);
     document.getElementById("miPersonaje").addEventListener('click',function(){
         elegirNombre();
-        noDisplay3();
+        
     })
+}
+function validarForm(event){
+    event.preventDefault();
 }
 //Elegir nombre
 function elegirNombre(){
         let charterName=document.getElementById("input")
         nombreElegido=charterName.value;
         let posicion=miPersonaje.length-1
-        miPersonaje[posicion].nombre=nombreElegido
-         if(nombreElegido!=""){
+        if (nombreElegido.length <= 3 ) { 
+            Swal.fire({
+                title:'No elegiste un nombre',
+                text:'Introduce un nombre valido',
+                icon:'error',
+                color:'#ed72c0',
+                background:'#292936',
+            });
+            
+        }else{
             let nombrePersonaje=document.getElementById("nombre")
             let nombreAsignado=document.createElement("h2")
             nombreAsignado.style=`margin-bottom: 0px;`
             nombreAsignado.innerText=`${nombreElegido}`
             nombrePersonaje.append(nombreAsignado)
-    }
-    crearPersonaje();
-    console.log(miPersonaje)
-    
+            crearPersonaje();
+            miPersonaje[posicion].nombre=nombreElegido;
+            noDisplay3();
+        }
+        
 }
 //Boton de creacion de personaje con grabado en local storage
 function crearPersonaje(){
@@ -288,7 +312,7 @@ function recuperarPersonaje(a){
 
 }
 
-function recup(a){
+    function recup(a){
     let miCharter=document.getElementById("personaje");    
     let charter=document.createElement("div");
 
@@ -335,9 +359,8 @@ function recup(a){
                 sonidoComienzo.play();
         };
     }
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////
-   //Funciones de Pelea
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//Funciones de Pelea
 
 const ultimoCh=miPersonaje.length-1;
 
@@ -390,7 +413,7 @@ function batallaPiso1(a,b){
 }
 
 function inFigth(a,b){
-    
+       
     let batalla1=document.getElementById("inFigth");   
     batalla1.innerHTML=`
         <div class="card">
@@ -413,9 +436,9 @@ function inFigth(a,b){
                 <p class="card-text">Agilidad: ${b.agilidad}</p>
         </div>
     `;
-   
+  
    victoriaDerrota(a,b);
-   sonidoAtacar.currentTime= 0;
+
 }
 
 
@@ -440,7 +463,8 @@ const botonBlock = document.getElementById("btnBloc")
             let golpeMo = calcularGolpeM1()
             let magiaPe = calcularMagiaP()
             
-            botonAtac.onclick=()=>{        
+            botonAtac.onclick=()=>{   
+                sonidoAtacar.currentTime= 0;     
                 sonidoAtacar.play()
                 sonidoMagia.pause()
                 
@@ -464,9 +488,9 @@ const botonBlock = document.getElementById("btnBloc")
                         color:'#ed72c0',
                         showConfirmButton: false,
                             }),500)
-
+                setTimeout(()=>sonidoAtacar.pause(),1700)
                 inFigth(per,enem)
-                         
+                       
             }
         
         botonMag.onclick=()=>{
@@ -538,6 +562,20 @@ function victoriaDerrota(a,b){
        	
     }
 }
+// Funcion Para aumentar stats entre batallas 
+function subirStats(a){
+    a.vida =a.vida + 200*ciclo;
+   a.golpeF= a.golpeF+20;
+   a.golpeM=a.golpeM+20;
+}
+//Funcion Para pasar de oponente 
+ function pasarNivel1(a,b){
+    inFigth(a,b);
+    batalla(a,b);
+}     
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Alertas
+
 // Alertas de Resultado de Batalla
 let ciclo = 1;
 function alertaVictoria(a){
@@ -586,17 +624,7 @@ function alertaVictoria(a){
             }      
             })
         }
-// Funcion Para aumentar stats entre batallas 
-    function subirStats(a){
-        a.vida =a.vida + 200*ciclo;
-       a.golpeF= a.golpeF+20;
-       a.golpeM=a.golpeM+20;
-    }
-//Funcion Para pasar de oponente 
-     function pasarNivel1(a,b){
-        inFigth(a,b);
-        batalla(a,b);
-   }     
+
 //Alerta de Final de Juego !
     function finalBoss(){
         Swal.fire({
@@ -648,7 +676,6 @@ async function epilogoCreacion(){
     renderEpilogo();
     
 }
-
 //Render Epilogo
 function renderEpilogo(){
     let docPrint=document.getElementById("epilogo"); 
